@@ -18,12 +18,7 @@ library(ggrastr)
 theme_set(theme_classic(base_size = 17))
 
 ## Run all fun_* codes
-for(code in list.files("src/R/general/", "^fun", full.names = T, recursive = T)){
-  message(code)
-  source(code)
-}
-
-for(code in list.files("src/functional/", "^fun_helper", full.names = T, recursive = T)){
+for(code in list.files("src/R/", "^fun", full.names = T, recursive = T)){
   message(code)
   source(code)
 }
