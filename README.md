@@ -122,10 +122,19 @@ In the manuscript, we performed dynamic co-cultures of immune cells with AA targ
 3. Merge data with scVI, annotate with SingleR
 4. Identify broader cell lineages (CD4+, CD8+, NK, B, myeloid, HSPC) and delineate, and to delineated cells, recluster with Seurat, annotate manually
 
-### 1. Preprocess
+See the steps 1, 3, and 4 above. For demultiplexing, 
+
+Demultiplexing of hashtag oligonucleotide (HTO) counts to classify cells to samples was performed on the quality-controlled cells.
+Additionally, cells with outlier expression of total HTO counts (>10,000 counts) were removed. Centered log-ratio-normalized HTO UMI counts were used with the “HTODemux”-function in Seurat (v. 4.3.0) with a uniquely chosen positive quantile for each sample, ranging from 0.99 to 0.9999. Only cells classified as singlets and cell types corresponding to the experimental design (e.g., only T cells from CD4/CD8 sorted samples) were retained for further analyses.
+
 ### 2. Demultiplex
-### 3. Merge data with scVI, annotate with SingleR
-### 4. Delineate and recluster
+<b>for</b> sample_rna_data, <i><b>do</b></i>  
+  <b>remove</b> cells with HTO counts > 10,000
+  <b>remove</b> K562 cells based on expression of marker genes
+  <b>normalize</b> with HTODemux
+  <b>remove</b> cells not corresponding to well ID (e.g., remove B cells from well that contained only T cells)
+  <b>pool</b> samples together
+</pre>
 
 
 ## TCR&beta;-seq analysis
